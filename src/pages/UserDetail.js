@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 
 function UserDetail() {
     const { id } = useParams();
-
-    const [user, setUser] = useState(null);
+    const location = useLocation();
+    const [user, setUser] = useState(location.state);
+    console.log(location)
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-            .then((res) => res.json())
-            .then((data) => setUser(data))
+        if (!user?.id) {
+            fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+                .then((res) => res.json())
+                .then((data) => setUser(data))
 
-    }, [id])
+        }
+    }, [id, user])
+
+
+
     return (
         <div>
             <h2>
@@ -21,8 +27,11 @@ function UserDetail() {
             {user && <pre>
                 {JSON.stringify(user, null, 2)}
             </pre>}
+            {/* {location.state && <pre>
+                {JSON.stringify(location.state, null, 2)}
+            </pre>} */}
             <Link to={`/users/${Number(id) + 1}`}>Sonraki Kullanıcı</Link>
-        </div>
+        </div >
     )
 }
 
