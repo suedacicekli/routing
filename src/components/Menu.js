@@ -13,7 +13,7 @@ function Menu() {
                 <li><Link to="/">Anasayfa</Link></li>
                 <li><Link to="users">Kullanıcılar</Link></li>
                 <li><Link to="contact">İletişim</Link></li>
-                <li className="cursor" onClick={() => navigate("contact")}>İletişim</li>
+                {/* <li className="cursor" onClick={() => navigate("contact")}>İletişim</li> */}
             </ul>
         </div>
     )
