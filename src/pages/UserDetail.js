@@ -4,7 +4,7 @@ import { Link, useParams, useLocation } from 'react-router-dom';
 function UserDetail() {
     const { id } = useParams();
     const location = useLocation();
-    const [user, setUser] = useState(location.state);
+    const [user, setUser] = useState();
     console.log(location)
 
     useEffect(() => {
@@ -12,10 +12,10 @@ function UserDetail() {
             fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
                 .then((res) => res.json())
                 .then((data) => setUser(data))
-
+            console.log("if olan")
         }
-    }, [id, user])
 
+    }, [id, user])
 
 
     return (
@@ -30,7 +30,7 @@ function UserDetail() {
             {/* {location.state && <pre>
                 {JSON.stringify(location.state, null, 2)}
             </pre>} */}
-            <Link to={`/users/${Number(id) + 1}`}>Sonraki Kullanıcı</Link>
+            <Link to={`/users/${Number(id) + 1}`}>Next User</Link>
         </div >
     )
 }
