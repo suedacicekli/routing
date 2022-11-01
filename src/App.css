@@ -16,3 +16,17 @@ li {
 .cursor {
   cursor: pointer;
 }
+
+.form>div {
+  margin-bottom: 10px;
+}
+
+.form>div>label {
+  display: block;
+
+}
+
+.form>div>input,
+textarea {
+  padding: 7px;
+}
