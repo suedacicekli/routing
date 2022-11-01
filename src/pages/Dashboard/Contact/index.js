@@ -13,13 +13,20 @@ function Contact() {
         },
         onSubmit: async (values, bag) => {
             await new Promise((res) => { setTimeout(res, 1000) })
-            console.log(values);
+            //console.log(values);
+            //console.log(bag)
+
+            if (values.email === "test@test.com") {
+                return bag.setErrors({ email: "Bu mail adresi zaten kullanılıyor" })
+            }
 
             bag.resetForm();
         },
         // validationSchema: validationSchema,
         validationSchema,
+
     })
+
 
 
     return (
