@@ -1,9 +1,10 @@
 import React from 'react'
 import { useFormik } from 'formik';
-
+import validationSchema from './validations';
+import './styles.css';
 function Contact() {
 
-    const { handleChange, handleSubmit, values, isSubmitting } = useFormik({
+    const { handleChange, handleSubmit, handleBlur, values, isSubmitting, errors, touched } = useFormik({
         initialValues: {
             firstName: '',
             lastName: '',
@@ -15,8 +16,11 @@ function Contact() {
             console.log(values);
 
             bag.resetForm();
-        }
+        },
+        // validationSchema: validationSchema,
+        validationSchema,
     })
+
 
     return (
         <div>
@@ -32,8 +36,9 @@ function Contact() {
                         value={values.firstName}
                         disabled={isSubmitting}
                         onChange={handleChange('firstName')}
+                        onBlur={handleBlur('firstName')}
                     />
-
+                    {errors.firstName && touched.firstName && <div className="error">{errors.firstName}</div>}
                 </div>
                 <div>
                     <label htmlFor="lastName">Last Name</label>
@@ -44,8 +49,9 @@ function Contact() {
                         value={values.lastName}
                         disabled={isSubmitting}
                         onChange={handleChange('lastName')}
+                        onBlur={handleBlur('lastName')}
                     />
-
+                    {errors.lastName && touched.lastName && <div className="error">{errors.lastName}</div>}
                 </div>
                 <div>
                     <label htmlFor="email">Email</label>
@@ -57,8 +63,9 @@ function Contact() {
                         value={values.email}
                         disabled={isSubmitting}
                         onChange={handleChange('email')}
+                        onBlur={handleBlur('email')}
                     />
-
+                    {errors.email && touched.email && <div className="error">{errors.email}</div>}
                 </div>
                 <div>
                     <label htmlFor="message">Message</label>
@@ -70,7 +77,9 @@ function Contact() {
                         value={values.message}
                         disabled={isSubmitting}
                         onChange={handleChange('message')}
+                        onBlur={handleBlur('message')}
                     />
+                    {errors.message && touched.message && <div className="error">{errors.message}</div>}
                 </div>
                 <button type="submit" disabled={isSubmitting}>Submit</button>
             </form>
