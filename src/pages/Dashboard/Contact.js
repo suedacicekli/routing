@@ -5,14 +5,16 @@ function Contact() {
 
     const { handleChange, handleSubmit, values, isSubmitting } = useFormik({
         initialValues: {
-            firstName: 'Test',
-            lastName: 'Deneme',
-            email: 'test@deneme.com',
-            message: 'Deneme message!',
+            firstName: '',
+            lastName: '',
+            email: '',
+            message: '',
         },
-        onSubmit: async (values) => {
+        onSubmit: async (values, bag) => {
             await new Promise((res) => { setTimeout(res, 1000) })
             console.log(values);
+
+            bag.resetForm();
         }
     })
 
